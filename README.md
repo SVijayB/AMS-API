@@ -7,13 +7,13 @@
 
 ## API Endpoints
 
-| ID  | Endpoint              | Example                                    | Details                                           |
-| --- | --------------------- | ------------------------------------------ | ------------------------------------------------- |
-| 1   | [/]                   | https://ams-api.herokuapp.com/             | Index.                                            |
-| 1   | [/api/]               | https://ams-api.herokuapp.com/api/         | API Base endpoint with documentation              |
-| 2   | [api/event/]          | https://ams-api.herokuapp.com/event/       | GET complete data on all the events.              |
-| 3   | [api/event/\<int:id>] | https://ams-api.herokuapp.com/event/8      | GET data from a particular event (from Event ID). |
-| 4   | [api/event/latest]    | https://ams-api.herokuapp.com/event/latest | GET data of the latest OSC event.                 |
+| ID  | Endpoint               | Example                                            | Details                                         |
+| --- | ---------------------- | -------------------------------------------------- | ----------------------------------------------- |
+| 1   | [/]                    | https://ams-api.herokuapp.com/                     | Index.                                          |
+| 1   | [/api/]                | https://ams-api.herokuapp.com/api/                 | API Base endpoint with documentation.           |
+| 3   | [api/auth/login]       | https://ams-api.herokuapp.com/api/auth/login       | POST login creds, Validates details.            |
+| 4   | [api/auth/signup]      | https://ams-api.herokuapp.com/api/auth/signup      | POST details, Validates and updates DB.         |
+| 5   | [api/auth/prof-signup] | https://ams-api.herokuapp.com/api/auth/prof-signup | POST request: Upload CSV File to add professors |
 
 ## Installation
 

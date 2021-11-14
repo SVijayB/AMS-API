@@ -11,12 +11,12 @@ api_blueprint.register_blueprint(login.login_bp)
 def get_data():
     content = """
     <h1>ASM-API</h1>
-    <h2>/api/login:</h2>
+    <h2>/api/auth:</h2>
     <p>
         <ul>
-            <li><b>/api/login/</b>: POST Login details and GET JSONIFIED data </li>
-            <li><b>/api/login/create: POST New credentials to be stored in DB</li>
-            <li><b>/api/login/update</b>: POST update current data</li>
+            <li><b>/api/auth/login</b>: POST Login details.</li>
+            <li><b>/api/auth/signup: POST New credentials to be stored in DB</li>
+            <li><b>/api/auth/prof-signup</b>: POST request: Upload CSV File to add professors</li>
         </ul>
     </p>
     <h2>/api/assignment:</h2>
