@@ -4,7 +4,7 @@ from src.routes.assignments import assignment_view
 
 api_blueprint = Blueprint("API", __name__, url_prefix="/api/")
 api_blueprint.register_blueprint(login.login_bp)
-api_blueprint.register_blueprint(assignment_view.assignment_bp)
+# api_blueprint.register_blueprint(assignment_view.assignment_bp)
 
 
 @api_blueprint.route("/", methods=["GET"])

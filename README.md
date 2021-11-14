@@ -1,19 +1,19 @@
-# ASM-API
+# ams-api
 
 <p align="center">
         <img src="https://i.pinimg.com/originals/72/10/78/721078d6b03e349cea9e59f24b42420c.png" width=500>
-    <br>AMS - ASSIGNMENT MANAGEMENT SYSTEM
+    <br>AMS - Assignment Management System
 </p>
 
 ## API Endpoints
 
 | ID  | Endpoint              | Example                                    | Details                                           |
 | --- | --------------------- | ------------------------------------------ | ------------------------------------------------- |
-| 1   | [/]                   | https://asm-api.herokuapp.com/             | Index.                                            |
-| 1   | [/api/]               | https://asm-api.herokuapp.com/api/         | API Base endpoint with documentation              |
-| 2   | [api/event/]          | https://asm-api.herokuapp.com/event/       | GET complete data on all the events.              |
-| 3   | [api/event/\<int:id>] | https://asm-api.herokuapp.com/event/8      | GET data from a particular event (from Event ID). |
-| 4   | [api/event/latest]    | https://asm-api.herokuapp.com/event/latest | GET data of the latest OSC event.                 |
+| 1   | [/]                   | https://ams-api.herokuapp.com/             | Index.                                            |
+| 1   | [/api/]               | https://ams-api.herokuapp.com/api/         | API Base endpoint with documentation              |
+| 2   | [api/event/]          | https://ams-api.herokuapp.com/event/       | GET complete data on all the events.              |
+| 3   | [api/event/\<int:id>] | https://ams-api.herokuapp.com/event/8      | GET data from a particular event (from Event ID). |
+| 4   | [api/event/latest]    | https://ams-api.herokuapp.com/event/latest | GET data of the latest OSC event.                 |
 
 ## Installation
 

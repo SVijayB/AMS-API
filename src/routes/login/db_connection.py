@@ -1,38 +1,44 @@
-from dotenv import load_dotenv
-import psycopg2
-import os
 import json
 
 
-def connection():
-    conn = psycopg2.connect(os.getenv("DATABASE_URL"))
-    cursor = conn.cursor()
-    query = """SELECT * FROM eventreg_event"""
-    cursor.execute(query)
-    data = cursor.fetchall()
-    conn.close()
+def login_validate(givenUsername, givePassword):
+    """
+    This function is used to validate the user credentials
+    """
+    with open("data/data.json") as json_file:
+        data = json.load(json_file)
 
-    result = []
+    result = {
+        "status": "false",
+        "message": "Login Failed",
+        "type": "",
+        "ID": "",
+        "name": "",
+        "username": "",
+    }
 
-    for row in data:
-        result.append(
-            {
-                "id": row[0],
-                "AssignmentName": row[1],
-                "AssignmentCaption": row[2],
-                "AssignmentDescription": row[3],
-                "eventVenue": row[4],
-                "AssignmentDate": row[5],
-                "AssignmentStartTime": row[6],
-                "AssignmentEndTime": row[7],
-                "AssignmentRegEndDate": row[8],
-                "AssignmentRegEndTime": row[9],
-                "AssignmentSpeaker": row[10],
-                "AssignmentURL": row[11],
-                "AssignmentDocumentation": row[12],
-            }
-        )
+    for student in data["StudentData"]:
+        if (
+            student["StudentUserName"] == givenUsername
+            and student["StudentPassword"] == givePassword
+        ):
+            result["status"] = "true"
+            result["message"] = "Login Successful"
+            result["type"] = "student"
+            result["ID"] = student["StudentID"]
+            result["name"] = student["StudentName"]
+            result["username"] = student["StudentUserName"]
 
-    result.sort(key=lambda x: x["id"])
-    json_data = json.dumps(result, indent=4, default=str)
-    return json.loads(json_data)
+    for prof in data["ProfData"]:
+        if (
+            prof["ProfUserName"] == givenUsername
+            and prof["ProfPassword"] == givePassword
+        ):
+            result["status"] = "true"
+            result["message"] = "Login Successful"
+            result["type"] = "prof"
+            result["ID"] = prof["ProfID"]
+            result["name"] = prof["ProfName"]
+            result["username"] = prof["ProfUserName"]
+
+    return result
