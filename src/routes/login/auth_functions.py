@@ -1,4 +1,6 @@
 import json
+import csv
+import os
 
 
 def login_validate(givenUsername, givePassword):
@@ -74,3 +76,34 @@ def validate_signup(name, username, password):
 
     result = {"status": "true", "message": "Signup Successful"}
     return result
+
+
+def validate_prof_signup(csvFile):
+    with open(csvFile, encoding="utf-8") as f:
+        csvReader = list(csv.DictReader(f))
+
+    with open("data/data.json") as json_file:
+        data = json.load(json_file)
+
+    existingProf = []
+    for check in data["ProfData"]:
+        for row in csvReader:
+            if check["ProfUserName"] == row["ProfUserName"]:
+                existingProf.append(row["ProfUserName"])
+                csvReader.remove(row)
+
+    for row in csvReader:
+        data["ProfData"].append(row)
+
+    with open("data/data.json", "w") as json_file:
+        json.dump(data, json_file, indent=4, separators=(",", ": "))
+    os.remove(csvFile)
+
+    if len(existingProf) > 0:
+        return str(
+            "<h3>Professors with the following usernames already exist: </h3> \n<pre>"
+            + str(existingProf)
+            + "</pre> However, rest of the data has been added.",
+        )
+    else:
+        return "<h3>Professors added successfully to the networks</h3>"
