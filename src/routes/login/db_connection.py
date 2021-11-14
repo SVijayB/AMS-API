@@ -42,3 +42,35 @@ def login_validate(givenUsername, givePassword):
             result["username"] = prof["ProfUserName"]
 
     return result
+
+
+def validate_signup(name, username, password):
+    """
+    This function is used to register the user to the network
+    """
+    with open("data/data.json") as json_file:
+        data = json.load(json_file)
+
+    studentID = len(data["StudentData"]) + 1
+
+    for check in data["StudentData"]:
+        if check["StudentUserName"] == username:
+            return {
+                "status": "false",
+                "message": "Username already exists",
+            }
+
+    obtained_data = {
+        "StudentID": studentID,
+        "StudentName": name,
+        "StudentUserName": username,
+        "StudentPassword": password,
+    }
+
+    data["StudentData"].append(obtained_data)
+
+    with open("data/data.json", "w") as json_file:
+        json.dump(data, json_file, indent=4, separators=(",", ": "))
+
+    result = {"status": "true", "message": "Signup Successful"}
+    return result
