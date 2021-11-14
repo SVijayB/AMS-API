@@ -49,5 +49,25 @@
             "StudentIDList": [1, 3, 4],
             "ProfIDList": [3]
         }
-    ]
+    ],
+    "AssignmentData": {
+        "CSE1005": {
+            "AssignmentID": 1,
+            "AssignmentName": "Assignment1",
+            "AssignmentDescription": "Assignment1 Description",
+            "AssignmentDueDate": "2020-01-01",
+            "AssignmentMaxScore": 100,
+            "AssignmentStudentList": [1, 2, 4],
+            "AssignmentStudentMark": [88, 76, 100]
+        },
+        "CSE3004": {
+            "AssignmentID": 2,
+            "AssignmentName": "Assignment2",
+            "AssignmentDescription": "Assignment2 Description",
+            "AssignmentDueDate": "2020-01-01",
+            "AssignmentMaxScore": 100,
+            "AssignmentStudentList": [1, 4],
+            "AssignmentStudentMark": [88, 76]
+        }
+    }
 }
