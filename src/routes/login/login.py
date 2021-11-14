@@ -102,9 +102,8 @@ def prof_signup():
             <input type=file name=file>
             <input type=submit value=Upload>
         </form>
-        <pre>
-        CSV Column names should strictly be limited to:
-        ProfName,ProfUserName,ProfPassword
-        </pre>
+        </br>
+        ⚠️⚠️ Note: CSV Column names should strictly be limited to:
+        ProfName,ProfUserName,ProfPassword ⚠️⚠️
         """
         return result

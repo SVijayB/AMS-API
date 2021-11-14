@@ -92,8 +92,12 @@ def validate_prof_signup(csvFile):
                 existingProf.append(row["ProfUserName"])
                 csvReader.remove(row)
 
+    ProfID = len(data["ProfData"]) + 1
     for row in csvReader:
+        row["ProfID"] = ProfID
+        row.move_to_end("ProfID", last=False)
         data["ProfData"].append(row)
+        ProfID += 1
 
     with open("data/data.json", "w") as json_file:
         json.dump(data, json_file, indent=4, separators=(",", ": "))
