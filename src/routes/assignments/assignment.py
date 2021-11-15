@@ -18,7 +18,8 @@ def getAssignments():
             return "<h2>Invalid Key, To obtain access to the key contact Project Lead.</h2>"
         data = request.get_json()
         result = get_assignments_init(data)
-        return result
+        print(result)
+        return jsonify(result)
     if request.method == "GET":
         result = """<h3>POST Json data of CourseID to get assignments created</h3></br>
         <pre>
