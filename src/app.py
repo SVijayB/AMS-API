@@ -10,7 +10,7 @@ def create_app():
     app.url_map.strict_slashes = False
     api_cors_config = {
         "origins": [
-            "/*",
+            "*",
             "http://localhost:3000",
         ]
     }
