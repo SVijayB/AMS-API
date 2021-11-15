@@ -48,11 +48,13 @@
     "CourseData": [
         {
             "CourseID": "CSE1005",
+            "CourseCredits": "3",
             "StudentIDList": [1, 2, 3, 4],
             "ProfIDList": [1]
         },
         {
             "CourseID": "CSE3004",
+            "CourseCredits": "4",
             "StudentIDList": [1, 3, 4],
             "ProfIDList": [3]
         }
