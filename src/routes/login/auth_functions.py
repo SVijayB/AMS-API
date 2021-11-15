@@ -15,8 +15,7 @@ class auth_functions:
             "id": "",
             "name": "",
             "username": "",
-            "CourseID": [],
-            "CourseCredits": "",
+            "CourseID": {},
         }
         with open("data/data.json") as json_file:
             complete_data = json.load(json_file)
@@ -111,8 +110,7 @@ class auth_functions:
             result["username"] = user["StudentUserName"]
             for course in data["CourseData"]:
                 if user["StudentID"] in course["StudentIDList"]:
-                    result["CourseID"].append(course["CourseID"])
-                    result["CourseCredits"] = course["CourseCredits"]
+                    result["CourseID"][course["CourseID"]] = course["CourseCredits"]
         else:
             result["status"] = "true"
             result["message"] = "Login Successful"
@@ -122,6 +120,5 @@ class auth_functions:
             result["username"] = user["ProfUserName"]
             for course in data["CourseData"]:
                 if user["ProfID"] in course["ProfIDList"]:
-                    result["CourseID"].append(course["CourseID"])
-                    result["CourseCredits"] = course["CourseCredits"]
+                    result["CourseID"][course["CourseID"]] = course["CourseCredits"]
         return result

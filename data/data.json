@@ -29,13 +29,13 @@
         {
             "ProfID": 1,
             "ProfName": "Hussain Ahmed",
-            "ProfUserName": "hussain.ahmed@vitap.ac.in ",
+            "ProfUserName": "hussain.ahmed@vitap.ac.in",
             "ProfPassword": "safepassword"
         },
         {
             "ProfID": 2,
             "ProfName": "Abhijith",
-            "ProfUserName": "abhijit.adhikari@vitap.ac.in ",
+            "ProfUserName": "abhijit.adhikari@vitap.ac.in",
             "ProfPassword": "Adhikari"
         },
         {
