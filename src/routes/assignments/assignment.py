@@ -1,8 +1,17 @@
 from dotenv.main import load_dotenv
-from flask import Flask, jsonify, request, Blueprint, current_app, redirect, url_for
-from werkzeug.utils import secure_filename
+from flask import (
+    jsonify,
+    request,
+    Blueprint,
+    current_app,
+    redirect,
+    url_for,
+)
+import flask
+from werkzeug.utils import secure_filename, send_file
 from src.routes.assignments.assignment_functions import *
 import os
+from pathlib import Path
 
 assign_bp = Blueprint("assignments", __name__, url_prefix="/assign")
 load_dotenv()
@@ -93,3 +102,16 @@ def uploadFile():
         <input type=submit value=Upload>
         </form>
         """
+
+
+@assign_bp.route("/get-pdf/<fileID>")
+def get_pdf(fileID):
+    current_app.config["FOLDER"] = "file_upload"
+    key = request.args.get("key")
+    if key == os.getenv("API_KEY"):
+        pass
+    else:
+        return "<h2> Invalid Key </h2>"
+    folder = current_app.config["FOLDER"]
+    path = folder + "/" + fileID + ".pdf"
+    return send_file(path, environ=request.environ)
