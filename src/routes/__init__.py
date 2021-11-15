@@ -1,10 +1,10 @@
 from flask import Blueprint
 from src.routes.login import login
-from src.routes.assignments import assignment_view
+from src.routes.assignments import assignment
 
 api_blueprint = Blueprint("API", __name__, url_prefix="/api/")
 api_blueprint.register_blueprint(login.login_bp)
-# api_blueprint.register_blueprint(assignment_view.assignment_bp)
+api_blueprint.register_blueprint(assignment.assign_bp)
 
 
 @api_blueprint.route("/", methods=["GET"])

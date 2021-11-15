@@ -67,8 +67,12 @@
                 "AssignmentDescription": "Assignment1 Description",
                 "AssignmentDueDate": "2020-01-01",
                 "AssignmentMaxScore": 100,
-                "AssignmentCompleted": [1, 2, 4],
-                "AssignmentStudentMark": [88, 76, 100]
+                "AssignmentCompleted": {
+                    "1": 83,
+                    "2": "NA",
+                    "3": 64,
+                    "4": "NA"
+                }
             },
             {
                 "AssignmentID": 2,
@@ -76,8 +80,7 @@
                 "AssignmentDescription": "Assignment2 Description",
                 "AssignmentDueDate": "2020-01-02",
                 "AssignmentMaxScore": 100,
-                "AssignmentCompleted": [1, 2, 3],
-                "AssignmentStudentMark": [88, 76, 100]
+                "AssignmentCompleted": { "1": 83, "2": 52, "4": "NA" }
             }
         ],
         "CSE3004": [
@@ -87,8 +90,7 @@
                 "AssignmentDescription": "Assignment2 Description",
                 "AssignmentDueDate": "2020-01-01",
                 "AssignmentMaxScore": 100,
-                "AssignmentCompleted": [1, 4],
-                "AssignmentStudentMark": [88, 76]
+                "AssignmentCompleted": { "1": 72, "3": 50 }
             }
         ]
     }
