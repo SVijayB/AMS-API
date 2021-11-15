@@ -58,3 +58,38 @@ def createAssignment():
         </pre>
         """
         return result
+
+
+@assign_bp.route("/file_upload", methods=["GET", "POST"])
+def uploadFile():
+    current_app.config["UPLOAD_FOLDER"] = "file_upload"
+    if request.method == "POST":
+        key = request.args.get("key")
+        if key == os.getenv("API_KEY"):
+            pass
+        else:
+            return "<h2> Invalid Key </h2>"
+        file = request.files["file"]
+        filename = file.filename
+        if filename == "":
+            return "<h2> ERROR: File not found. </h2>"
+        allowed_file = "." in filename and filename.rsplit(".", 1)[1].lower() in {"pdf"}
+        if file and allowed_file:
+            folder = current_app.config["UPLOAD_FOLDER"]
+            filename = secure_filename(filename)
+        try:
+            file.save(os.path.join(folder, filename))
+            result = {"status": "true", "message": "File uploaded successfully!"}
+        except:
+            result = {"status": "false", "message": "Please upload a valid file"}
+        return result
+    if request.method == "GET":
+        return """
+        <!doctype html>
+        <title>Upload new File</title>
+        <h1>Upload new File</h1>
+        <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+        </form>
+        """
