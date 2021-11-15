@@ -1,7 +1,7 @@
 from dotenv.main import load_dotenv
-from flask import Flask, jsonify, request, Blueprint, current_app
+from flask import Flask, jsonify, request, Blueprint, current_app, redirect, url_for
 from werkzeug.utils import secure_filename
-from src.routes.login.auth_functions import *
+from src.routes.login.auth_functions import auth_functions
 import os
 
 login_bp = Blueprint("logins", __name__, url_prefix="/auth")
@@ -19,7 +19,7 @@ def login():
         data = request.get_json()
         username = data["username"]
         password = data["password"]
-        result = login_validate(username, password)
+        result = auth_functions.login_validate(username, password)
         return jsonify(result)
 
     if request.method == "GET":
@@ -44,11 +44,14 @@ def signup():
         else:
             return "<h2>Invalid Key, To obtain access to the key contact Project Lead.</h2>"
         data = request.get_json()
-        name = data["name"]
-        username = data["username"]
-        password = data["password"]
-        result = validate_signup(name, username, password)
-        return jsonify(result)
+        try:
+            name = data["name"]
+            username = data["username"]
+            password = data["password"]
+            result = auth_functions.validate_signup(name, username, password)
+            return jsonify(result)
+        except:
+            return redirect(url_for("API.logins.signup"))
 
     if request.method == "GET":
         result = """<h3>POST Json data of name, username and password to register yourself(student) to the network</h3></br>
@@ -85,7 +88,7 @@ def prof_signup():
             filename = secure_filename(filename)
             file.save(os.path.join(folder, filename))
             try:
-                result = validate_prof_signup(f"{folder}/{filename}")
+                result = auth_functions.validate_prof_signup(f"{folder}/{filename}")
             except:
                 return "<h2> ERROR: Make sure to follow exact structure as provided in examples/ebDetails.csv </h2>"
             return result
