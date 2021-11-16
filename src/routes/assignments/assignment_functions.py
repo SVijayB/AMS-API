@@ -46,7 +46,9 @@ def after_upload(studentId, courseId, assignmentId):
 
     print(assignmentId)
     for assignments in complete_data["AssignmentData"][courseId]:
-        if assignments["AssignmentName"] == assignmentId:
+        print("Given", assignmentId, " | AssignmentID", assignments["AssignmentID"])
+        if str(assignments["AssignmentID"]) == assignmentId:
+            print("HEY")
             assignments["AssignmentCompleted"][studentId] = "NA"
 
     with open("data/data.json", "w") as json_file:
