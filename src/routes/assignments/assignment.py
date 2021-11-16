@@ -27,7 +27,6 @@ def getAssignments():
             return "<h2>Invalid Key, To obtain access to the key contact Project Lead.</h2>"
         data = request.get_json()
         result = get_assignments_init(data)
-        print(result)
         return jsonify(result)
     if request.method == "GET":
         result = """<h3>POST Json data of CourseID to get assignments created</h3></br>
@@ -69,7 +68,7 @@ def createAssignment():
         return result
 
 
-@assign_bp.route("/file_upload", methods=["GET", "POST"])
+@assign_bp.route("/file_upload/", methods=["GET", "POST"])
 def uploadFile():
     current_app.config["UPLOAD_FOLDER"] = "file_upload"
     if request.method == "POST":
@@ -79,10 +78,16 @@ def uploadFile():
         else:
             return "<h2> Invalid Key </h2>"
         file = request.files["file"]
+        courseId = request.args.get("courseID")
+        studentId = request.args.get("studentID")
+        assignmentID = request.args.get("assignmentID")
+        if assignmentID == "":
+            assignmentID = 1
         filename = file.filename
-        if filename == "":
-            return "<h2> ERROR: File not found. </h2>"
         allowed_file = "." in filename and filename.rsplit(".", 1)[1].lower() in {"pdf"}
+        filename = (
+            str(studentId) + "_" + str(courseId) + "_" + str(assignmentID) + ".pdf"
+        )
         if file and allowed_file:
             folder = current_app.config["UPLOAD_FOLDER"]
             filename = secure_filename(filename)
@@ -91,7 +96,9 @@ def uploadFile():
             result = {"status": "true", "message": "File uploaded successfully!"}
         except:
             result = {"status": "false", "message": "Please upload a valid file"}
+        after_upload(studentId, courseId, assignmentID)
         return result
+
     if request.method == "GET":
         return """
         <!doctype html>

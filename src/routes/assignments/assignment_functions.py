@@ -38,3 +38,16 @@ def create_assignment(data):
     with open("data/data.json", "w") as json_file:
         json.dump(complete_data, json_file, indent=4, separators=(",", ": "))
     return {"status": "true", "message": "Assignment created successfully"}
+
+
+def after_upload(studentId, courseId, assignmentId):
+    with open("data/data.json") as json_file:
+        complete_data = json.load(json_file)
+
+    for assignments in complete_data["AssignmentData"][courseId]:
+        if assignments["AssignmentID"] == assignmentId:
+            assignments["AssignmentCompleted"][studentId] = "NA"
+
+    with open("data/data.json", "w") as json_file:
+        json.dump(complete_data, json_file, indent=4, separators=(",", ": "))
+    return "Data updated successfully"
