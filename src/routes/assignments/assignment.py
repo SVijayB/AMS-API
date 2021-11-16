@@ -81,8 +81,8 @@ def uploadFile():
         courseId = request.args.get("courseID")
         studentId = request.args.get("studentID")
         assignmentID = request.args.get("assignmentID")
-        if assignmentID == "":
-            assignmentID = 1
+        if assignmentID == "null":
+            return "Please try again"
         filename = file.filename
         allowed_file = "." in filename and filename.rsplit(".", 1)[1].lower() in {"pdf"}
         filename = (
